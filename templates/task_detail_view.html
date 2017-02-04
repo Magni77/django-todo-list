@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ object.title }}</title>
+</head>
+<body>
+    <h1>{{ object.title }}</h1>
+    <p>{{ object.content }}</p>
+    <p>{{ object.time }}</p>
+    {% if not object.completed %}
+        <a href="{{object.get_absolute_url}}edit"><input type='submit'  class='btn btn-default' value='Edit'></a>
+    {% endif %}
+        <a href="{{object.get_absolute_url}}delete"><input type='submit'  class='btn btn-default' value='Delete'></a>
+        <a href="/tasks/"><input type='submit'  class='btn btn-default' value='Back'></a>
+
+</body>
+</html>

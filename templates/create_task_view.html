@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<div class="col-sm-8 col-sm-offset-2">
+ <div class="row">
+       <div class="col-sm-12">
+ <h1>Form</h1>
+    <form method="POST" action="">{%  csrf_token %}
+        {{ form.as_p }}
+        <input type="submit"  value="Create Post">
+    </form></body>
+</div>
+</div>
+
+</div>
+
+</html>
