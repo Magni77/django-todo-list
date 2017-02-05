@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'main.html' %}
+
+
+
+
+{% block content %}
 {% if messages %}
 <ul class="messages">
     {% for message in messages %}
@@ -18,11 +17,11 @@
  <h1>Form</h1>
     <form method="POST" action="">{%  csrf_token %}
         {{ form.as_p }}
-        <input type="submit"  value="Create Post">
+        <input type="submit"  value="Submit">
     </form></body>
 </div>
 </div>
 
 </div>
 
-</html>
+{% endblock content %}

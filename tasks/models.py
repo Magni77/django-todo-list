@@ -7,7 +7,7 @@ from django.core.urlresolvers import reverse
 
 class TaskModel(models.Model):
     title = models.CharField(max_length=120)
-    content = models.TextField(max_length=300)
+    content = models.TextField(blank=True, null=True)
     time = models.DateTimeField(auto_now=False, auto_now_add=False)
     completed = models.BooleanField(default=False)
 

@@ -4,12 +4,16 @@ from .taskForm import TaskForm
 from django.contrib import messages
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+import datetime
 
 
 def task_list(request):
-    qs = TaskModel.objects.all()
+    qs = TaskModel.objects.all()#.filter(time__lte=datetime.datetime.now())
+    late = qs.filter(time__lte=datetime.datetime.now())
+
     context = {
         "objects_list": qs,
+        "old_tasks": late
     }
     template = 'task_list_view.html'
     return render(request, template, context)
@@ -68,3 +72,12 @@ def delete_task(request, id):
     }
     template = 'delete_view.html'
     return render(request, template, context)
+
+@login_required
+def mark_as_completed(request, id):
+    obj = get_object_or_404(TaskModel, id=id)
+    if request.method == 'GET':
+        obj.completed = True
+        obj.save()
+        messages.success(request, 'Completed!')
+        return HttpResponseRedirect("/tasks/{num}".format(num=obj.id))
